@@ -23,7 +23,19 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [const Header(), LoginForm(), const Footer()],
+        children: [
+          Expanded(
+            child: Stack(
+              children: [
+                Image.asset('../images/background_image.jpeg'),
+                Column(
+                  children: [const Header(), LoginForm()],
+                ),
+              ],
+            ),
+          ),
+          const Footer()
+        ],
       ),
     );
   }
@@ -36,19 +48,23 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(32.0),
+      margin: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Text('Awesome App',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
           SizedBox(
             height: 30,
           ),
           Text(
             'LOGIN',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           )
         ],
       ),
@@ -67,17 +83,29 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(3),
-      margin: const EdgeInsets.all(32),
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TextFormField(
-            controller: emailTextEditingControler,
+          Container(
+            decoration: const BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              controller: emailTextEditingControler,
+            ),
           ),
-          TextFormField(
-            controller: passwordTextEditingControler,
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            decoration: const BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              controller: passwordTextEditingControler,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           TextButton(
               child: const Text('LOGIN'),
@@ -85,7 +113,7 @@ class LoginForm extends StatelessWidget {
               style: TextButton.styleFrom(
                   backgroundColor: Colors.red,
                   primary: Colors.white,
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 8)))
+                  padding: const EdgeInsets.all(8.0)))
         ],
       ),
     );
@@ -109,7 +137,8 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      decoration: const BoxDecoration(color: Colors.white),
+      // color: Colors.white,
       alignment: Alignment.center,
       child: const Text(
         'SIGN UP',
